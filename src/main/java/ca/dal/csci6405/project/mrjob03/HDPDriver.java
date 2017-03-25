@@ -27,8 +27,8 @@ public class HDPDriver extends Configured implements Tool {
 
         job.setInputFormatClass(NLinesInputFormat.class);
 
-        job.setMapOutputKeyClass(IntWritable.class);
-        job.setMapOutputValueClass(Outcome.class);
+        job.setMapOutputKeyClass(Outcome.class);
+        job.setMapOutputValueClass(IntWritable.class);
         FileInputFormat.addInputPath(job, new Path(args[0]));
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
         return job.waitForCompletion(true)?0:1;

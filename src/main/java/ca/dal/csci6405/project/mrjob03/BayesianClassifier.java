@@ -52,8 +52,8 @@ public class BayesianClassifier {
                     JsonArray array = reader.readArray();
                     for ( int i = 0; i < HAND; ++i ) {
                         JsonObject object = array.getJsonObject(i);
-                        if ( object.size() == 0 ) continue ;
                         counts.put(i,new TreeMap<>());
+                        if ( object.size() == 0 ) continue ;
                         for ( Map.Entry<String,JsonValue> entry: object.entrySet() )
                             counts.get(i).put(Integer.parseInt(entry.getKey()),Integer.parseInt(entry.getValue().toString()));
                     }
@@ -78,7 +78,7 @@ public class BayesianClassifier {
     public int getPrediction( long hand ) {
         int []a = new int[HAND];
         for ( int i = 0; i < HAND; ++i )
-            a[HAND-1-i] = (int)((hand>>MyUtils.WIDTH)&MyUtils.MASK(MyUtils.WIDTH));
+            a[i] = (int)((hand>>(MyUtils.WIDTH*i))&MyUtils.MASK(MyUtils.WIDTH));
         for ( int i = 0; i < HAND-1; ++i )
             MyUtils.myAssert(a[i] > a[i+1]);
         double []mass = new double[M+1];
@@ -87,7 +87,8 @@ public class BayesianClassifier {
         for ( int i = 1; i <= M; ++i ) {
             Map<Integer,Map<Integer,Integer>> counts = priors.get(i);
             for ( int j = 0; j < HAND; ++j ) {
-                double up = counts.get(j).get(a[j]), down = 0;
+                MyUtils.myAssert(counts.containsKey(j));
+                double up = (!counts.get(j).containsKey(a[j])?1:counts.get(j).get(a[j])), down = 52;
                 for ( Map.Entry<Integer,Integer> entry: counts.get(j).entrySet() )
                     if ( j == 0 || entry.getKey() < a[j-1] )
                         down += entry.getValue();

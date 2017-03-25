@@ -14,7 +14,7 @@ public class HDPMapper extends Mapper<LongWritable,Text,Outcome,IntWritable> {
     private final IntWritable ONE = new IntWritable(1);
     private BayesianClassifier classifier = new BayesianClassifier();
     {
-        classifier.readModel(new File("/user/serikzhan/priors.txt"));
+        classifier.readModel(new File("/home/serikzhan/Classes/priors.txt"));
     }
     private long readPokerHand( Scanner scan ) {
         long u = 0;
