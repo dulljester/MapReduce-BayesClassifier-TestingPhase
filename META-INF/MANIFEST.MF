@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: ca.dal.csci6405.project.mrjob03.HDPDriver
+
