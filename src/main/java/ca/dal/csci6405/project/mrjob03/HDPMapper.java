@@ -4,8 +4,6 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
-import sun.util.resources.cldr.nyn.CalendarData_nyn_UG;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -14,7 +12,8 @@ public class HDPMapper extends Mapper<LongWritable,Text,Outcome,IntWritable> {
     private final IntWritable ONE = new IntWritable(1);
     private BayesianClassifier classifier = new BayesianClassifier();
     {
-        classifier.readModel(new File("/home/serikzhan/Classes/priors.txt"));
+        //classifier.readModel(new File("/home/serikzhan/Classes/priors.txt"));
+        classifier.readModel(new File("/users/grad/kazi/priors.txt"));
     }
     private long readPokerHand( Scanner scan ) {
         long u = 0;

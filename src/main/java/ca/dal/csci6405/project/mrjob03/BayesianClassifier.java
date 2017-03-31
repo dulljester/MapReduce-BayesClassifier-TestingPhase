@@ -1,7 +1,5 @@
 package ca.dal.csci6405.project.mrjob03;
 
-import org.apache.commons.collections.map.HashedMap;
-
 import javax.json.*;
 import javax.json.stream.JsonGenerator;
 import java.io.*;
@@ -13,7 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by serikzhan on 25/03/17.
+ * Created by sj on 25/03/17.
  */
 public class BayesianClassifier {
     private static Map<String,Object> config = new HashMap<>();

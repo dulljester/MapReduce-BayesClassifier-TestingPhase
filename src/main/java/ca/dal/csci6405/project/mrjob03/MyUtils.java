@@ -1,8 +1,5 @@
 package ca.dal.csci6405.project.mrjob03;
 
-import java.io.*;
-import java.util.*;
-
 public class MyUtils {
     public static int M = 5, WIDTH = 6;
     public static long BIT( int k ) { return 1L<<k; }
